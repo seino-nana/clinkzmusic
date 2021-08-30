@@ -63,6 +63,10 @@
         border-left: 3px solid skyblue;
         border-bottom: 1px solid #ccc;
       }
+      .lrc {
+        text-align: center;
+        overflow: hidden;
+      }
     </style>
 </head>
 <body>
@@ -88,7 +92,9 @@
             <div class="content col-md-5">
               <div class="row">
                 <div class="lrc">
+                  <ul class="ullrc">
 
+                  </ul>
                 </div>
               </div>
               <div class="row">
@@ -136,8 +142,154 @@
           music_items[i].className = 'current'
         })
       }
-
-      // 点击目标的选中状态
+      
+      let lrc = `[00:00.000] 作词 : Bro. Hi/Diggy-MO'
+[00:01.000] 作曲 : Shinnosuke/Diggy-MO'
+[00:02.020]Yo' I'm feelin' tha VOODOO in my brain
+[00:07.150]I ain't my usual self tonight
+[00:11.830]Walk in tha beautiful rain
+[00:14.610]Tha world rotates around me
+[00:21.650]Here's a little story must be told
+[00:24.290]
+[00:29.790]血統の妙
+[00:30.850]血統の業
+[00:31.910]
+[00:32.920]Yo' look into my evil eyez
+[00:35.940]鮮やかな Time と Tired guy
+[00:38.040]飼い慣らされた Butler 誅殺 Hey you'
+[00:40.630]Just serve my world Aight ?!
+[00:42.260]染まる樹海 大気の重さに
+[00:44.000]Moonrise　Dramatize and また Bite
+[00:46.400]幻覚 Siamese 差し込む
+[00:48.620]Moonbeams　So' you can't disguise
+[00:50.650]Yo' cuttin' wit this my rhyme' my sight...
+[00:52.840]All time is on my side
+[00:54.810]Design to get what I want
+[00:55.960]卓抜な着想 and 調和した真実の世界
+[00:58.990]汚れた大地 仮面無しじゃ
+[01:00.738]No life 怪奇満ちて So divine
+[01:03.058]真夜中の裁決と Vampire's
+[01:05.218]祭典　Now you fantasize
+[01:06.849]
+[01:07.540]Here's a taste of tha remedy （Yeah!）
+[01:09.918]己を憂い Got it ?! （Woo-yes' I got it!）
+[01:13.290]Got it ?! （Got it） Got it ?! （Yes' I got it）
+[01:15.840]Here's a taste of tha remedy （Yeah!）
+[01:18.030]己を憂い Got it ?! （Woo-yes' I got it !）
+[01:21.379]RUDIment's gon' succeed
+[01:23.629]Yeah !
+[01:24.129]LOOK INTO MY EVIL EYEZ
+[01:26.188]SEE SOMETHIN' INSIDE
+[01:27.108]時代をも抱いて お前を殺めんばかりの MY MIND
+[01:30.670]凍るような MY SPINE
+[01:32.420]囚われたまま災いから
+[01:34.739]YOU WANNA RUN AWAY OR WANNA DIE ?!
+[01:36.640]今 SADISTIC な愛に支配されて
+[01:38.790]OH' THIS WORLD'S SO DAMN FINE
+[01:41.500]
+[01:45.140]堂々巡る歳月 今宵響く嗚咽 威光 空に発つ
+[01:49.129]What's Immoral things? 愛に欲に渇望
+[01:51.310]うねる炎 It's in my blood 美徳と化す
+[01:53.909]Now it's knockin' on 背徳の門
+[01:55.790]悠久の霧の都を紅く焦がす刺客
+[01:58.188]闇の業火へと誘う
+[01:59.530]Time has came　get off
+[02:01.620]Virgin blood…触れて So mellow
+[02:03.638]賢者さえも下僕 Get on get on
+[02:05.718]Imagine that…永遠に No sorrow
+[02:07.780]この異教渦巻く現世のShadow
+[02:09.889]うなる怒号 刻む罪は深く
+[02:12.079]故に存在は強く輝く 尚も終えない因果は重く
+[02:16.299]時の狭間で 今 お前を待つ
+[02:18.139]
+[02:18.519]Here's a taste of tha remedy （Yeah!）
+[02:20.899]己を憂い Got it ?! （Woo-yes' I got it!）
+[02:24.269]Got it ?! （Got it） Got it ?! （Yes' I got it）
+[02:26.869]Here's a taste of tha remedy （Yeah!）
+[02:29.149]己を憂い Got it ?! （Woo-yes' I got it !）
+[02:32.399]RUDIment's gon' succeed
+[02:34.530]Yeah !
+[02:35.079]LOOK INTO MY EVIL EYEZ
+[02:37.089]SEE SOMETHIN' INSIDE
+[02:38.030]時代をも抱いて お前を殺めんばかりの MY MIND
+[02:41.399]凍るような MY SPINE
+[02:43.369]囚われたまま災いから
+[02:45.589]YOU WANNA RUN AWAY OR WANNA DIE ?!
+[02:47.560]今 SADISTIC な愛に支配されて
+[02:49.729]OH' THIS WORLD'S SO DAMN FINE
+[02:51.299]
+[02:51.889]LOOK INTO MY EVIL EYEZ
+[02:53.769]DREAMIN' ON A LIE
+[02:54.639]SOMEBODY NEED TO JUSTIFY
+[02:55.989]構いやしない
+[02:56.860]WHEN YOU CROSS THA LINE YOU DON'T KNOW
+[02:58.549]THERE'S NO SUNSHINE
+[03:00.049]したたる PEN に見る
+[03:01.699]吸い込まれるしなやかなタッチ BLACK AND WHITE
+[03:04.169]刻まれた STAR ON THA NECK
+[03:06.229]IT JUST SUGGESTS A GUY'S MYSTERIOUS SIDE
+[03:10.479]
+[03:29.530]疎外 厄介な Fighter Fights to Find tha cipha Fire Fire
+[03:33.589]I'm a pions guy who try to be tha hypa hypa hypa...
+[03:38.079]破壊欲 快楽 開花 才知を開花 Bite off　Bite off
+[03:42.149]v' v'v' violence I write off goin' goin' MAD
+[03:48.319]
+[03:50.349]LOOK INTO MY EVIL EYEZ
+[03:52.280]SEE SOMETHIN' INSIDE
+[03:53.160]時代をも抱いて お前を殺めんばかりの MY MIND
+[03:56.610]凍るような MY SPINE
+[03:58.560]囚われたまま災いから
+[04:00.780]YOU WANNA RUN AWAY OR WANNA DIE ?!
+[04:02.739]今 SADISTIC な愛に支配されて
+[04:04.869]OH' THIS WORLD'S SO DAMN FINE
+[04:06.969]LOOK INTO MY EVIL EYEZ
+[04:08.810]DREAMIN' ON A LIE
+[04:09.709]SOMEBODY NEED TO JUSTIFY
+[04:11.088]構いやしない
+[04:11.969]WHEN YOU CROSS THA LINE YOU DON'T KNOW
+[04:13.629]THERE'S NO SUNSHINE
+[04:15.129]したたる PEN に見る
+[04:16.528]吸い込まれるしなやかなタッチ BLACK AND WHITE
+[04:19.250]刻まれた STAR ON THA NECK
+[04:21.310]IT JUST SUGGESTS A GUY'S MYSTERIOUS SIDE
+[04:26.189]
+[04:29.889]IT JUST SUGGESTS A GUY'S MYSTERIOUS SIDE
+[04:34.259]
+[04:38.319]IT JUST SUGGESTS A GUY'S MYSTERIOUS SIDE
+[04:42.120]
+[05:00.088]
+[05:20.468]
+[05:42.408]おわり`
+      // 分割每一列
+      let parts = lrc.split("\n")
+      let lrcArray = []
+      let lrcTime = []
+      // 遍历分割每一句
+      for(let i=0;i<parts.length;i++) {
+        // 截取歌词
+        lrcArray[i] = parts[i].split(/\s*\n*\[.*?\]\s*/).filter(v => v)
+        // 截取时间,不包括后面的]
+        lrcTime[i] = parts[i].split("",lrc.match(/\]/).index).join("");
+        // 删除前面的[
+        lrcTime[i] = lrcTime[i].substr(1)
+        // 将分和秒分隔开
+        // let seconds = lrcTime[i].split(":")[1]
+        // let mins = lrcTime[i].split(":")[0]
+        // lrcTime[i] = seconds + mins*60
+        console.log(lrcTime[i]);
+      }
+    
+      // 歌词添加到页面中
+      let ullrc = document.querySelector('.ullrc')
+      function inputLrc() {
+        for(let i=0;i<lrcArray.length;i++) {
+          let li = document.createElement('li')
+          li.innerHTML = lrcArray[i]
+          ullrc.appendChild(li)
+        }
+      }
+      document.body.onload = inputLrc;
+      
       
       
 
