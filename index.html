@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico">
+    <!--[if it IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- 引入bootstrap样式文件 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>简易播放器</title>
+    <style>
+      body {
+        background-color: #eee;
+      }
+      .container {
+        background-color: #fff; 
+      }
+      .menu,.content {
+        height: 800px;
+        border: 1px solid skyblue;
+      }
+      .lrc {
+        height: 740px;
+        border: 1px solid pink;
+      }
+      .music_items {
+        padding: 6px;
+        border-bottom: 1px solid #ccc;
+      }
+      .music_items:hover {
+        background-color: #eee;
+      }
+      .menu-hd {
+        height: 100px;       
+        background-color: skyblue;
+        overflow: hidden;
+        line-height: 100px;       
+        padding: 5px;
+      }
+      .menu-bd {
+        padding: 20px;
+      }
+      .hd-image {
+        float: left;
+        width: 90px;
+        height: 90px;
+        border: 1px solid #ccc;
+      }
+      .hd-title {
+        font-size: 36px;
+        padding-left: 10px;
+        text-align: center;      
+      }
+      .current {
+        background-color: #eee;
+        padding: 6px;
+        border-left: 3px solid skyblue;
+        border-bottom: 1px solid #ccc;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="menu col-md-7" >
+              <div class="row">
+                <div class="menu-hd">
+                  <img class="hd-image" src="/upload/VOODOO KINGDOM.jpg" alt="">
+                  <span class="hd-title">VOODOO KINGDOM - SOUL'd OUT</span>                
+                </div>
+                <div class="menu-bd">
+                  <div class="music_items"></div>
+                  <div class="music_items"></div>
+                  <div class="music_items"></div>
+                  <div class="music_items"></div>
+                  <div class="music_items"></div>
+                  <div class="music_items"></div>
+                  <div class="music_items"></div>
+                </div>
+              </div>
+            </div>
+            <div class="content col-md-5">
+              <div class="row">
+                <div class="lrc">
+
+                </div>
+              </div>
+              <div class="row">
+                <audio class="col-md-12" src="/music/VOODOO KINGDOM.mp3" controls loop></audio>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script>
+      let music = [
+        { name: "VOODOO KINGDOM - SOUL'd OUT", src: '/music/VOODOO KINGDOM.mp3',singer: "SOUL'd OUT",img: '/upload/VOODOO KINGDOM.jpg'},
+        { name: 'Bloody Stream', src: '/music/Bloody Stream.mp3',singer: 'Coda(小田和奏)',img: '/upload/Bloody Stream.jpg'},
+        { name: 'Crazy Noisy Bizarre Town', src: '/music/Crazy Noisy Bizarre Town.mp3',singer: 'THE DU',img: '/upload/Crazy Noisy Bizarre Town.jpg'},
+        { name: 'Great Days', src: '/music/Great Days.mp3',singer: '青木カレン,ハセガワダイスケ',img: '/upload/Great Days.jpg'},
+        { name: "il vento d'oro", src: "/music/il vento d'oro.mp3",singer: '菅野祐悟',img: "/upload/il vento d'oro.jpg"},
+        { name: 'STAND PROUD', src: '/music/STAND PROUD.mp3',singer: '橋本仁',img: '/upload/STAND PROUD.jpg'},
+        { name: 'ジョジョ~その血の運命~', src: '/music/ジョジョ~その血の運命~.mp3',singer: '橋本仁,Coda(小田和奏),富永TOMMY弘明',img: '/upload/ジョジョ その血の記憶～end of THE WORLD～.jpg'},
+      ]
+      // 歌单
+      let music_items = document.querySelectorAll('.music_items')
+      // 播放器
+      let audio = document.querySelector('audio')
+      // 左侧头部标题
+      let title = document.querySelector('.hd-title')
+      let titleimage = document.querySelector('.hd-image')
+      // 歌单数量
+      let len = music_items.length
+      // 遍历歌单
+      for(let i= 0; i< len;i++) {
+        // 歌单的内容 = 对象的name
+        music_items[i].innerHTML = music[i].name
+        // 歌单的点击事件
+        music_items[i].addEventListener('click',function() {
+          // 播放音乐的地址
+          audio.src = music[i].src
+          // 头部标题
+          title.innerHTML = music[i].name
+          // 头部图片
+          titleimage.src = music[i].img
+          // 点击的同时先将music_items的样式归原
+          for(let i=0;i<len;i++) {
+            music_items[i].className = 'music_items'
+          }
+          // 选中的目标切换样式
+          music_items[i].className = 'current'
+        })
+      }
+
+      // 点击目标的选中状态
+      
+      
+
+      
+      
+    </script>
+</body>
+</html>
