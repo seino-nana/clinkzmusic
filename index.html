@@ -22,12 +22,22 @@
         background-color: #fff; 
       }
       .menu,.content {
+        position: relative;
         height: 800px;
-        border: 1px solid skyblue;
+      }
+      .audio {
+        position: absolute;
+        bottom: 2px;
+        right: 0;
       }
       .lrc {
         height: 740px;
-        border: 1px solid pink;
+        text-align: center;
+        overflow: hidden;
+        background-color: skyblue;
+      }
+      .lrc_active {
+        color: red;
       }
       .music_items {
         padding: 6px;
@@ -63,10 +73,6 @@
         border-left: 3px solid skyblue;
         border-bottom: 1px solid #ccc;
       }
-      .lrc {
-        text-align: center;
-        overflow: hidden;
-      }
     </style>
 </head>
 <body>
@@ -93,12 +99,11 @@
               <div class="row">
                 <div class="lrc">
                   <ul class="ullrc">
-
                   </ul>
                 </div>
               </div>
               <div class="row">
-                <audio class="col-md-12" src="/music/VOODOO KINGDOM.mp3" controls loop></audio>
+                <audio class="col-md-12 audio" src="/music/VOODOO KINGDOM.mp3" controls loop></audio>
               </div>
             </div>
         </div>
@@ -122,6 +127,12 @@
       let titleimage = document.querySelector('.hd-image')
       // 歌单数量
       let len = music_items.length
+
+      // 歌词容器的高度
+      let a = 740
+      // 歌词li的高度
+      let b = 30
+      
       // 遍历歌单
       for(let i= 0; i< len;i++) {
         // 歌单的内容 = 对象的name
@@ -262,34 +273,74 @@
 [05:42.408]おわり`
       // 分割每一列
       let parts = lrc.split("\n")
-      let lrcArray = []
-      let lrcTime = []
-      // 遍历分割每一句
       for(let i=0;i<parts.length;i++) {
-        // 截取歌词
-        lrcArray[i] = parts[i].split(/\s*\n*\[.*?\]\s*/).filter(v => v)
-        // 截取时间,不包括后面的]
-        lrcTime[i] = parts[i].split("",lrc.match(/\]/).index).join("");
-        // 删除前面的[
-        lrcTime[i] = lrcTime[i].substr(1)
-        // 将分和秒分隔开
-        // let seconds = lrcTime[i].split(":")[1]
-        // let mins = lrcTime[i].split(":")[0]
-        // lrcTime[i] = seconds + mins*60
-        console.log(lrcTime[i]);
+        let lrcArr = parts[i]
+        parts[i] = change(lrcArr)
+        function change(str) {
+          // 获取歌词
+          let lrc = str.split(/\s*\n*\[.*?\]\s*/).filter(v => v)
+          // 获取时间
+          let time = str.split("",str.match(/\]/).index).join("");
+          time = time.substr(1)
+          // 时间分离
+          let s = +time.split(":")[1]
+          let min = +time.split(":")[0]
+          // parts返回时间-歌词两个对象
+          return {
+            time: min*60 + s,
+            lrc: lrc
+          }
+        }
       }
+      // lrcArray取代parts
+      let lrcArray = parts  
     
       // 歌词添加到页面中
       let ullrc = document.querySelector('.ullrc')
       function inputLrc() {
+        // 遍历创建li并设置样式
         for(let i=0;i<lrcArray.length;i++) {
           let li = document.createElement('li')
-          li.innerHTML = lrcArray[i]
+          li.innerHTML = lrcArray[i].lrc
+          li.style.height = b + 'px'
+          li.style.fontSize = '16px'
           ullrc.appendChild(li)
         }
       }
-      document.body.onload = inputLrc;
+      // body载入的时候调用一次
+      document.body.onload = inputLrc;  
       
+      // 获取播放器正在播放的歌词，返回i
+      function setCurrentLi() {
+        let time = audio.currentTime
+        for(i= 0;i<lrcArray.length;i++) {
+           if(time - lrcArray[i].time <= 0) {
+             return i
+           }
+        }
+      }
+
+      function current() {
+        // 获取i
+        let i = setCurrentLi()
+        // ullrc里面所有li的class设置为空   
+        let urllrc = document.querySelector('.ullrc')
+        let lis = urllrc.querySelectorAll('li')
+        for(let i=0;i<lis.length;i++) {
+          lis[i].className = ''
+        }
+        // 正在播放的歌词添加active
+        let li = document.querySelectorAll('li')[i-1]
+        li.className = 'lrc_active'
+        
+        // 滚动效果 通过修改ullrc容器里的marginTop值
+        let divHeight = a
+        let liHeight = b
+        let top = liHeight * (i-1) - divHeight/2 + liHeight/2;
+        urllrc.style.marginTop = -top + 'px'
+      }
+      // 播放器更新的时候调用current
+      audio.ontimeupdate = current
       
       
 
