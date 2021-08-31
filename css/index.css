@@ -9,3 +9,61 @@
 li {
   list-style-type: none;
 }
+
+body {
+  background-color: #eee;
+}
+.container {
+  background-color: #fff; 
+}
+.menu,.content {
+  position: relative;
+  height: 800px;
+}
+.audio {
+  position: absolute;
+  bottom: 2px;
+  right: 0;
+}
+.lrc {
+  height: 740px;
+  text-align: center;
+  overflow: hidden;
+  background-color: skyblue;
+}
+.lrc_active {
+  color: red;
+}
+.music_items {
+  padding: 6px;
+  border-bottom: 1px solid #ccc;
+}
+.music_items:hover {
+  background-color: #eee;
+}
+.menu-hd {
+  height: 100px;       
+  overflow: hidden;
+  line-height: 100px;       
+  padding: 5px;
+}
+.menu-bd {
+  padding: 20px;
+}
+.hd-image {
+  float: left;
+  width: 90px;
+  height: 90px;
+  border: 1px solid #ccc;
+}
+.hd-title {
+  font-size: 36px;
+  padding-left: 10px;
+  text-align: center;      
+}
+.current {
+  background-color: #eee;
+  padding: 6px;
+  border-left: 3px solid skyblue;
+  border-bottom: 1px solid #ccc;
+}
